@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import API_URL from '../utils/config';
 
 const Register = () => {
     const [formData, setFormData] = useState({
@@ -15,12 +16,13 @@ const Register = () => {
     const onSubmit = async e => {
         e.preventDefault();
         try {
-            const res = await axios.post('http://localhost:5000/api/auth/register', formData);
+            const res = await axios.post(`${API_URL}/api/auth/register`, formData);
             console.log(res.data);
         } catch (err) {
             console.error(err.response.data);
         }
     };
+    
 
     return (
         <form onSubmit={onSubmit}>

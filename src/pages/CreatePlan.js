@@ -20,8 +20,7 @@ const CreatePlan = () => {
                 nome,
                 descricao,
                 preco,
-                duracao,
-                gatewayId
+                duracao
             });
 
             setSuccessMessage('Plano criado com sucesso!');
@@ -70,13 +69,7 @@ const CreatePlan = () => {
                     onChange={(e) => setDuracao(e.target.value)}
                     required
                 />
-                <input
-                    type="text"
-                    placeholder="Gateway ID"
-                    value={gatewayId}
-                    onChange={(e) => setGatewayId(e.target.value)}
-                    required
-                />
+              
                 <button type="submit">Criar Plano</button>
             </form>
             {successMessage && <p>{successMessage}</p>}
