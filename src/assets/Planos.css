@@ -1,0 +1,102 @@
+.planos-container {
+    display: flex;
+    min-height: 100vh;
+    background-color: #f8f9fa;
+}
+
+.planos-content {
+    margin-left: 250px; /* Compensar a largura da Sidebar */
+    padding: 20px;
+    background-color: white;
+    width: calc(100% - 250px); /* Diminuir a largura da Sidebar */
+}
+
+.planos-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.planos-header h1 {
+    font-size: 28px;
+    color: #343a40;
+    margin: 0;
+}
+
+.planos-lista {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Centraliza os cards horizontalmente */
+    gap: 20px; /* Espaço entre os cards */
+    padding: 0;
+}
+
+.plano-card {
+    background-color: #ffffff;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 300px;
+    text-align: center;
+    transition: transform 0.2s;
+}
+
+.plano-card:hover {
+    transform: scale(1.05);
+}
+
+.plano-card h2 {
+    margin-top: 0;
+    font-size: 22px;
+    color: #007bff;
+}
+
+.plano-card p {
+    color: #495057;
+    margin: 10px 0;
+}
+
+.plano-card button {
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px 5px;
+}
+
+.plano-card button:hover {
+    background-color: #0056b3;
+}
+
+.form-container {
+    margin-top: 30px;
+    background-color: #f1f1f1;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.form-container input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+}
+
+.form-container button[type="submit"] {
+    background-color: #28a745;
+}
+
+.form-container button[type="submit"]:hover {
+    background-color: #218838;
+}
+
+.form-container button[type="button"] {
+    background-color: #dc3545;
+}
+
+.form-container button[type="button"]:hover {
+    background-color: #c82333;
+}

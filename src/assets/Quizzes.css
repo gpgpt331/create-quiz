@@ -1,0 +1,118 @@
+/* Quizzes.css */
+
+/* Página dos Quizzes */
+.quizzes-page {
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+
+.quizzes-page h1 {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Lista de Quizzes */
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Card de Quiz */
+.quiz-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    padding: 15px;
+    position: relative;
+    transition: box-shadow 0.3s ease;
+}
+
+.quiz-card:hover {
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.quiz-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.quiz-summary {
+    margin-bottom: 15px;
+}
+
+/* Pergunta e Respostas */
+.question-block {
+    margin-bottom: 15px;
+}
+
+.question-text {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.answer-list {
+    list-style: none;
+    padding: 0;
+}
+
+.answer-text {
+    padding: 5px 0;
+}
+
+/* Inputs em Modo de Edição */
+input[type="text"] {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 8px;
+    font-size: 16px;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+/* Botões de Ação */
+.quiz-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.quiz-action-button {
+    background-color: #007bff;
+    border: none;
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.quiz-action-button:hover {
+    background-color: #0056b3;
+}
+
+.quiz-action-button.secondary {
+    background-color: #6c757d;
+}
+
+.quiz-action-button.secondary:hover {
+    background-color: #5a6268;
+}
+
+/* Mensagem de Erro */
+.error-message {
+    color: #dc3545;
+    font-size: 16px;
+}
+
+.quizzes-page {
+    margin-left: 250px;
+    padding: 20px;
+    width: calc(100% - 250px);
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
