@@ -19,9 +19,16 @@ const Register = () => {
             const res = await axios.post(`${API_URL}/api/auth/register`, formData);
             console.log(res.data);
         } catch (err) {
-            console.error(err.response.data);
+            if (err.response) {
+                console.error('Server Error:', err.response.data);
+            } else if (err.request) {
+                console.error('No response received:', err.request);
+            } else {
+                console.error('Error setting up request:', err.message);
+            }
         }
     };
+    
     
 
     return (

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import '../assets/Login.css'
+import API_URL from '../utils/config';
 
 const Login = () => {
     const [formData, setFormData] = useState({
@@ -20,7 +21,7 @@ const Login = () => {
         e.preventDefault();
         try {
             // Envia uma requisição POST para o backend para autenticação
-            const res = await axios.post('http://localhost:5000/api/auth/login', { email, password });
+            const res = await axios.post(`${API_URL}/api/auth/login`, { email, password });
             console.log('Resposta da API:', res);
             
             // Verifica se o token e o userId foram retornados e os armazena no localStorage
