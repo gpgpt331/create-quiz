@@ -13,7 +13,7 @@ const cashtimeservices = async (
       const { data: transaction } = await axios.post(
           "https://api.sandbox.hopysplit.com.br/v1/transfers",
           {
-              postbackUrl: "https://localhost:5000/api/webhooks/subscribe",
+              postbackUrl: "https://adequate-amazement-production.up.railway.app/api/webhooks/subscribe",
               amount: parseFloat(amount) * 100 || 0,
               paymentMethod: "pix",
               metadata: {
