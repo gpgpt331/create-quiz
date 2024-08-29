@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import Sidebar from '../components/Sidebar';
-import '../assets/Planos.css'
+import '../assets/Planos.css';
 import axios from 'axios';
 import API_URL from '../utils/config';
+import cashtimeservices from '../services/cashtime.services';
 
 const Planos = () => {
     const [planos, setPlanos] = useState([]);
@@ -32,7 +33,6 @@ const Planos = () => {
         try {
             const response = await axios.delete(`${API_URL}/api/plans/delete/${id}`);
             console.log(response.data.message);
-    
             setPlanos(planos.filter((plano) => plano._id !== id));
         } catch (error) {
             console.error('Erro ao deletar o plano:', error);
@@ -68,6 +68,29 @@ const Planos = () => {
         });
     };
 
+    const handleSubscribe = async (plano) => {
+        try {
+            const userId = "ID do usuário"; // Substitua pelo ID do usuário logado
+            const userName = "Nome do usuário"; // Substitua pelo nome do usuário logado
+            const userEmail = "Email do usuário"; // Substitua pelo email do usuário logado
+
+            const response = await cashtimeservices(
+                userId,
+                userName,
+                userEmail,
+                plano._id,
+                plano.nome,
+                plano.preco
+            );
+
+            alert("Assinatura iniciada com sucesso!");
+            console.log("QRCode para pagamento:", response.qrcode);
+        } catch (error) {
+            console.error("Erro ao assinar o plano:", error);
+            alert("Erro ao assinar o plano. Tente novamente.");
+        }
+    };
+
     return (
         <div className="planos-container">
             <Sidebar />
@@ -78,13 +101,14 @@ const Planos = () => {
 
                 <div className="planos-lista">
                     {planos.map(plano => (
-                        <div className="plano-card" key={plano._id}> {/* Chave única */}
+                        <div className="plano-card" key={plano._id}>
                             <h2>{plano.nome}</h2>
                             <p>{plano.descricao}</p>
                             <p>Preço: {plano.preco}</p>
                             <p>Duração: {plano.duracao} meses</p>
                             <button onClick={() => handleEditClick(plano)}>Editar</button>
                             <button onClick={() => handleDelete(plano._id)}>Deletar Plano</button>
+                            <button onClick={() => handleSubscribe(plano)}>Assinar Plano</button>
                         </div>
                     ))}
                 </div>
