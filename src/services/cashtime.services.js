@@ -54,11 +54,11 @@ const cashtimeservices = async (
           throw new Error(`Transação falhou com status: ${transaction.status}`);
       }
 
-  } catch (error) {
-      // Captura e exibe a resposta completa do erro para debugging
-      console.log("Erro na requisição para Cashtime:", error.response?.data || error.message);
-      throw new Error("failed to fetch qrcode");
-  }
+  }   catch (error) {
+    // Captura e exibe a resposta completa do erro para debugging
+    console.log("Erro na requisição para Cashtime:", error.response?.data || error.message);
+    throw new Error("failed to fetch qrcode");
+}
 };
 
 
