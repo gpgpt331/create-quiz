@@ -11,7 +11,6 @@ const CreatePlan = () => {
     const [descricao, setDescricao] = useState('');
     const [preco, setPreco] = useState('');
     const [duracao, setDuracao] = useState('');
-    const [gatewayId, setGatewayId] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
 
     const handleSubmit = async (e) => {
@@ -30,7 +29,6 @@ const CreatePlan = () => {
             setDescricao('');
             setPreco('');
             setDuracao('');
-            setGatewayId('');
 
             console.log('Plano criado:', response.data);
         } catch (error) {
