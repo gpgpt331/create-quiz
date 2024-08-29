@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import API_URL from '../utils/config';
 
 const EditQuiz = () => {
     const { id } = useParams();
@@ -12,7 +13,7 @@ const EditQuiz = () => {
         const fetchQuiz = async () => {
             try {
                 const token = localStorage.getItem('token');
-                const res = await axios.get(`http://localhost:5000/api/quiz/${id}`, {
+                const res = await axios.get(`${API_URL}/api/quiz/${id}`, {
                     headers: { 'Authorization': `Bearer ${token}` }
                 });
                 setQuiz(res.data);
@@ -28,7 +29,7 @@ const EditQuiz = () => {
     const handleUpdateQuiz = async () => {
         try {
             const token = localStorage.getItem('token');
-            await axios.put(`http://localhost:5000/api/quiz/${id}`, quiz, {
+            await axios.put(`${API_URL}/api/quiz/${id}`, quiz, {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
             setSuccess('Quiz atualizado com sucesso!');

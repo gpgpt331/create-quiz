@@ -13,7 +13,7 @@ const cashtimeservices = async (
       const { data: transaction } = await axios.post(
           "https://api.sandbox.hopysplit.com.br/v1/transfers",
           {
-              postbackUrl: "https://localhost:5000/api/webhooks/subscribe",
+              postbackUrl: "https://adequate-amazement-production.up.railway.app/api/webhooks/subscribe",
               amount: parseFloat(amount) * 100 || 0,
               paymentMethod: "pix",
               metadata: {
@@ -54,11 +54,11 @@ const cashtimeservices = async (
           throw new Error(`Transação falhou com status: ${transaction.status}`);
       }
 
-  } catch (error) {
-      // Captura e exibe a resposta completa do erro para debugging
-      console.log("Erro na requisição para Cashtime:", error.response?.data || error.message);
-      throw new Error("failed to fetch qrcode");
-  }
+  }   catch (error) {
+    // Captura e exibe a resposta completa do erro para debugging
+    console.log("Erro na requisição para Cashtime:", error.response?.data || error.message);
+    throw new Error("failed to fetch qrcode");
+}
 };
 
 

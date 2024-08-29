@@ -4,19 +4,19 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import Sidebar from '../components/Sidebar';
 import '../assets/CreatePlan.css'
+import API_URL from '../utils/config';
 
 const CreatePlan = () => {
     const [nome, setNome] = useState('');
     const [descricao, setDescricao] = useState('');
     const [preco, setPreco] = useState('');
     const [duracao, setDuracao] = useState('');
-    const [gatewayId, setGatewayId] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:5000/api/plans/create', {
+            const response = await axios.post(`${API_URL}/api/plans/create`, {
                 nome,
                 descricao,
                 preco,
@@ -29,7 +29,6 @@ const CreatePlan = () => {
             setDescricao('');
             setPreco('');
             setDuracao('');
-            setGatewayId('');
 
             console.log('Plano criado:', response.data);
         } catch (error) {

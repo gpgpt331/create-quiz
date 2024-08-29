@@ -5,6 +5,7 @@ import '../assets/QuizDetail.css';
 import '../assets/CommentsSection.css';
 import Modal from 'react-modal';
 import { Oval } from 'react-loader-spinner';
+import API_URL from '../utils/config';
 
 const QuizDetail = () => {
     const { id } = useParams();
@@ -25,7 +26,7 @@ const QuizDetail = () => {
         const fetchQuiz = async () => {
             try {
                 const token = localStorage.getItem('token');
-                const response = await axios.get(`http://localhost:5000/api/quiz/quiz/${id}`, {
+                const response = await axios.get(`${API_URL}/api/quiz/quiz/${id}`, {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }

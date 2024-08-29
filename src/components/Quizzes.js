@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../assets/Quizzes.css';
-import Sidebar from '../components/Sidebar';
-import API_URL from '../utils/config';
-
 
 const Quizzes = () => {
     const [quizzes, setQuizzes] = useState([]);
@@ -15,7 +12,7 @@ const Quizzes = () => {
         const fetchQuizzes = async () => {
             try {
                 const token = localStorage.getItem('token');
-                const res = await axios.get(`${API_URL}/api/quiz/all`, {
+                const res = await axios.get('http://localhost:5000/api/quiz/all', {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }
@@ -38,7 +35,7 @@ const Quizzes = () => {
     const handleSaveQuiz = async (id) => {
         try {
             const token = localStorage.getItem('token');
-            await axios.put(`${API_URL}/api/quiz/${id}`, editingData, {
+            await axios.put(`http://localhost:5000/api/quiz/${id}`, editingData, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -66,7 +63,7 @@ const Quizzes = () => {
     const handleDeleteQuiz = async (id) => {
         try {
             const token = localStorage.getItem('token');
-            await axios.delete(`${API_URL}/api/quiz/quiz/${id}`, {
+            await axios.delete(`http://localhost:5000/api/quiz/quiz/${id}`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -91,7 +88,6 @@ const Quizzes = () => {
 
     return (
         <div className="quizzes-page">
-            <Sidebar/>
             <h1>Quizzes Criados</h1>
             {error && <p className="error-message">{error}</p>}
             <ul>
@@ -107,7 +103,6 @@ const Quizzes = () => {
                                                 type="text"
                                                 value={editingData.questions[questionIndex].text}
                                                 onChange={(e) => handleChange(e, questionIndex)}
-                                                placeholder='Informe a sua pergunta'
                                             />
                                         ) : (
                                             <p className="question-text">{question.text}</p>
@@ -120,7 +115,6 @@ const Quizzes = () => {
                                                             type="text"
                                                             value={editingData.questions[questionIndex].answers[answerIndex].text}
                                                             onChange={(e) => handleChange(e, questionIndex, answerIndex)}
-                                                            placeholder='Informe a resposta'
                                                         />
                                                     ) : (
                                                         <span>{answer.text}</span>

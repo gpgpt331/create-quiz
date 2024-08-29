@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import Sidebar from '../components/Sidebar';
 import '../assets/Quiz.css';
+import API_URL from '../utils/config';
 
 const Quiz = () => {
     const [quizData, setQuizData] = useState({
@@ -65,7 +66,7 @@ const Quiz = () => {
             formData.append('image', quizData.image);
             formData.append('questions', JSON.stringify(quizData.questions));
     
-            const res = await axios.post('http://localhost:5000/api/quiz', formData, {
+            const res = await axios.post(`${API_URL}/api/quiz`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                     'Authorization': `Bearer ${token}`
