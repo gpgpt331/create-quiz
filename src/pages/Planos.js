@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Sidebar from '../components/Sidebar';
 import '../assets/Planos.css'
 import axios from 'axios';
+import API_URL from '../utils/config';
 
 const Planos = () => {
     const [planos, setPlanos] = useState([]);
@@ -17,7 +18,7 @@ const Planos = () => {
     useEffect(() => {
         const fetchPlanos = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/api/plans');
+                const response = await axios.get(`${API_URL}/api/plans`);
                 setPlanos(response.data);
             } catch (error) {
                 console.error('Erro ao buscar os planos:', error);
@@ -29,7 +30,7 @@ const Planos = () => {
 
     const handleDelete = async (id) => {
         try {
-            const response = await axios.delete(`http://localhost:5000/api/plans/delete/${id}`);
+            const response = await axios.delete(`${API_URL}/api/plans/delete/${id}`);
             console.log(response.data.message);
     
             setPlanos(planos.filter((plano) => plano._id !== id));
@@ -41,7 +42,7 @@ const Planos = () => {
     const handleUpdate = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.put(`http://localhost:5000/api/plans/${editData}`, formData);
+            const response = await axios.put(`${API_URL}/api/plans/${editData}`, formData);
             setPlanos(planos.map(plano => plano._id === editData ? response.data : plano));
             setEditData(null);
             setFormData({

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../assets/Quizzes.css';
 import Sidebar from '../components/Sidebar';
+import API_URL from '../utils/config';
 
 
 const Quizzes = () => {
@@ -14,7 +15,7 @@ const Quizzes = () => {
         const fetchQuizzes = async () => {
             try {
                 const token = localStorage.getItem('token');
-                const res = await axios.get('http://localhost:5000/api/quiz/all', {
+                const res = await axios.get(`${API_URL}/api/quiz/all`, {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }
@@ -37,7 +38,7 @@ const Quizzes = () => {
     const handleSaveQuiz = async (id) => {
         try {
             const token = localStorage.getItem('token');
-            await axios.put(`http://localhost:5000/api/quiz/${id}`, editingData, {
+            await axios.put(`${API_URL}/api/quiz/${id}`, editingData, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -65,7 +66,7 @@ const Quizzes = () => {
     const handleDeleteQuiz = async (id) => {
         try {
             const token = localStorage.getItem('token');
-            await axios.delete(`http://localhost:5000/api/quiz/quiz/${id}`, {
+            await axios.delete(`${API_URL}/api/quiz/quiz/${id}`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
