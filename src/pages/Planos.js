@@ -3,8 +3,7 @@ import Sidebar from '../components/Sidebar';
 import '../assets/Planos.css';
 import axios from 'axios';
 import API_URL from '../utils/config';
-import { generateSubscribeQrcode } from '../services/cashtime.services';
-
+import cashtimeservices from '../services/cashtime.services';
 import Modal from '../components/Modal';
 
 const Planos = () => {
@@ -83,7 +82,7 @@ const Planos = () => {
     const handleModalSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await generateSubscribeQrcode (
+            const response = await cashtimeservices(
                 "ID do usuário", // Substitua pelo ID do usuário logado
                 formData.nome,
                 formData.email,
