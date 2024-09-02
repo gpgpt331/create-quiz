@@ -12,7 +12,7 @@ async function generateSubscribeQrcode({
 }) {
   try {
     const response = await axios.post(
-      "http://api.gateway.cashtimepay.com.br/v1/transactions",
+      "https://api.gateway.cashtimepay.com.br/v1/transactions",
       {
         postbackUrl: "https://api.semlimitesenvios.com/api/webhooks/subscribe",
         amount: parseFloat(amount) * 100 || 0,
