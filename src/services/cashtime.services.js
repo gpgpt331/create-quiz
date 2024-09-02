@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const CASHTIME_SK = process.env.CASHTIME_SK;
+const CASHTIME_SK = "sk_live_DwK6Yt9z1WSLkkIpoJYiyHG9LE5MJiThFPMPsWJipX";
 
 async function generateSubscribeQrcode({
   userId,
@@ -42,7 +42,7 @@ async function generateSubscribeQrcode({
         headers: {
           accept: "application/json",
           "content-type": "application/json",
-          authorization: "Basic " + Buffer.from(`${CASHTIME_SK}:x`).toString("base64")
+          authorization: "Basic " + btoa(`${CASHTIME_SK}:x`) // Substituindo Buffer por btoa
         }
       }
     );
