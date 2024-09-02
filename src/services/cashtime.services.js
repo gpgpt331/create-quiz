@@ -2,7 +2,7 @@ import axios from "axios";
 const CASHTIME_SK = "sk_live_DwK6Yt9z1WSLkkIpoJYiyHG9LE5MJiThFPMPsWJipX"
 
 
-// Função para gerar o QR Code de assinatura
+
 export async function generateSubscribeQrcode({
   userId,
   userName,
@@ -28,7 +28,7 @@ export async function generateSubscribeQrcode({
           email: userEmail,
           document: {
             type: "cpf",
-            number: "31847909086" // Você pode ajustar isso conforme necessário
+            number: "31847909086" // Ajuste conforme necessário
           }
         },
         items: [
@@ -56,5 +56,3 @@ export async function generateSubscribeQrcode({
     throw new Error("Falha ao buscar o QR code");
   }
 }
-
-export default cashtime
