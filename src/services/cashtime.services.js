@@ -21,10 +21,6 @@ async function generateSubscribeQrcode({
       amount
     });
 
-    // Validar valores de entrada
-    if (!userId || !userName || !userEmail || !planId || !planName || !amount) {
-      throw new Error("Todos os campos são obrigatórios.");
-    }
 
     const response = await axios.post(
       "https://api.gateway.cashtimepay.com.br/v1/transactions",
@@ -77,4 +73,4 @@ async function generateSubscribeQrcode({
 }
 
 
-export default generateSubscribeQrcode;
+export default generateSubscribeQrcode ;

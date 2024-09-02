@@ -3,8 +3,9 @@ import Sidebar from '../components/Sidebar';
 import '../assets/Planos.css';
 import axios from 'axios';
 import API_URL from '../utils/config';
-import cashtimeservices from '../services/cashtime.services';
+
 import Modal from '../components/Modal';
+import generateSubscribeQrcode from '../services/cashtime.services';
 
 const Planos = () => {
     const [planos, setPlanos] = useState([]);
@@ -85,7 +86,7 @@ const Planos = () => {
             // Dados do usuário e do plano
             const userId = "66cff033c6d58e5adb414547"; // Substitua pelo ID do usuário logado
             const userName = "admin1";
-            const userEmail = "testegmail.com";
+            const userEmail = "admin@gmail.com";
             const planId = "66d61167587b80518149f105";
             const planName = "assinatura";
             const amount = "5000";
@@ -95,8 +96,8 @@ const Planos = () => {
                 throw new Error("Todos os campos são obrigatórios.");
             }
     
-            // Chame a função cashtimeservices com os dados corretos
-            const response = await cashtimeservices(userId, userName, userEmail, planId, planName, amount);
+            // Chame a função generateSubscribeQrcode com os dados corretos
+            const response = await generateSubscribeQrcode({userId, userName, userEmail, planId, planName, amount});
             setQrCode(response.qrcode);
             alert("Assinatura iniciada com sucesso!");
             setIsModalOpen(false);
