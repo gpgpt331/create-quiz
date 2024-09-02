@@ -55,4 +55,5 @@ async function generateSubscribeQrcode({
   }
 }
 
+// Aqui estamos exportando a função como padrão
 export default generateSubscribeQrcode;
