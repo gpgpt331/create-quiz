@@ -1,9 +1,8 @@
 import axios from "axios";
 
-// Defina a chave secreta da Cashtime
 const CASHTIME_SK = "sk_live_DwK6Yt9z1WSLkkIpoJYiyHG9LE5MJiThFPMPsWJipX";
 
-export async function generateSubscribeQrcode({
+async function generateSubscribeQrcode({
   userId,
   userName,
   userEmail,
@@ -12,7 +11,6 @@ export async function generateSubscribeQrcode({
   amount
 }) {
   try {
-    // Faz a requisição para a API Cashtime
     const response = await axios.post(
       "http://api.gateway.cashtimepay.com.br/v1/transactions",
       {
@@ -49,7 +47,6 @@ export async function generateSubscribeQrcode({
       }
     );
 
-    // Verifica se a transação retornou com sucesso e possui os dados do PIX
     const _cashtime = response.data;
     return { qrcode: _cashtime.pix.qrcode };
   } catch (error) {
@@ -57,6 +54,5 @@ export async function generateSubscribeQrcode({
     throw new Error("Falha ao buscar o QR code");
   }
 }
-
 
 export default generateSubscribeQrcode;
