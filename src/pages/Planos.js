@@ -82,14 +82,21 @@ const Planos = () => {
     const handleModalSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await cashtimeservices(
-                "ID do usuário", // Substitua pelo ID do usuário logado
-                formData.nome,
-                formData.email,
-                selectedPlano._id,
-                selectedPlano.nome,
-                selectedPlano.preco
-            );
+            // Dados do usuário e do plano
+            const userId = "66cff033c6d58e5adb414547"; // Substitua pelo ID do usuário logado
+            const userName = formData.nome;
+            const userEmail = formData.email;
+            const planId = selectedPlano._id;
+            const planName = selectedPlano.nome;
+            const amount = selectedPlano.preco;
+    
+            // Verifique se todos os dados estão presentes
+            if (!userId || !userName || !userEmail || !planId || !planName || !amount) {
+                throw new Error("Todos os campos são obrigatórios.");
+            }
+    
+            // Chame a função cashtimeservices com os dados corretos
+            const response = await cashtimeservices(userId, userName, userEmail, planId, planName, amount);
             setQrCode(response.qrcode);
             alert("Assinatura iniciada com sucesso!");
             setIsModalOpen(false);
@@ -98,6 +105,7 @@ const Planos = () => {
             alert("Erro ao assinar o plano. Tente novamente.");
         }
     };
+    
 
     return (
         <div className="planos-container">

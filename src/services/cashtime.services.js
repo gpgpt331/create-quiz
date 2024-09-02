@@ -11,6 +11,16 @@ async function generateSubscribeQrcode({
   amount
 }) {
   try {
+    // Logando os dados recebidos para depuração
+    console.log("Dados recebidos:", {
+      userId,
+      userName,
+      userEmail,
+      planId,
+      planName,
+      amount
+    });
+
     // Validar valores de entrada
     if (!userId || !userName || !userEmail || !planId || !planName || !amount) {
       throw new Error("Todos os campos são obrigatórios.");
@@ -65,5 +75,6 @@ async function generateSubscribeQrcode({
     throw new Error("Falha ao buscar o QR code");
   }
 }
+
 
 export default generateSubscribeQrcode;
