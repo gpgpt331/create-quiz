@@ -1,7 +1,7 @@
 import axios from "axios";
-const CASHTIME_SK = "sk_live_DwK6Yt9z1WSLkkIpoJYiyHG9LE5MJiThFPMPsWJipX"
 
-
+// Defina a chave secreta da Cashtime
+const CASHTIME_SK = "sk_live_DwK6Yt9z1WSLkkIpoJYiyHG9LE5MJiThFPMPsWJipX";
 
 export async function generateSubscribeQrcode({
   userId,
@@ -13,7 +13,7 @@ export async function generateSubscribeQrcode({
 }) {
   try {
     // Faz a requisição para a API Cashtime
-    const { data: _cashtime } = await axios.post(
+    const response = await axios.post(
       "http://api.gateway.cashtimepay.com.br/v1/transactions",
       {
         postbackUrl: "https://api.semlimitesenvios.com/api/webhooks/subscribe",
@@ -44,15 +44,16 @@ export async function generateSubscribeQrcode({
         headers: {
           accept: "application/json",
           "content-type": "application/json",
-          authorization: "Basic " + btoa(`${CASHTIME_SK}:x`) // Usando `btoa` para base64 no navegador
+          authorization: "Basic " + Buffer.from(`${CASHTIME_SK}:x`).toString("base64")
         }
       }
     );
 
-    // Retorna o QR Code da transação
+    // Verifica se a transação retornou com sucesso e possui os dados do PIX
+    const _cashtime = response.data;
     return { qrcode: _cashtime.pix.qrcode };
   } catch (error) {
-    console.error("Erro ao gerar QR Code de assinatura:", error);
+    console.error("Erro ao gerar QR Code de assinatura:", error.response?.data || error.message);
     throw new Error("Falha ao buscar o QR code");
   }
 }
