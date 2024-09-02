@@ -57,3 +57,6 @@ export async function generateSubscribeQrcode({
     throw new Error("Falha ao buscar o QR code");
   }
 }
+
+
+export default generateSubscribeQrcode;
