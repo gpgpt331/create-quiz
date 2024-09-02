@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const CASHTIME_SK = "sk_live_DwK6Yt9z1WSLkkIpoJYiyHG9LE5MJiThFPMPsWJipX";
+const CASHTIME_SK = process.env.CASHTIME_SK;
 
 async function generateSubscribeQrcode({
   userId,
@@ -55,5 +55,4 @@ async function generateSubscribeQrcode({
   }
 }
 
-// Aqui estamos exportando a função como padrão
 export default generateSubscribeQrcode;
