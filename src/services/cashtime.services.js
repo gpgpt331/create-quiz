@@ -40,15 +40,13 @@ const cashtimeservices = async (
                 headers: {
                     accept: "application/json",
                     "content-type": "application/json",
-                    authorization:
-                        "Basic " + Buffer.from(`${CASHTIME_SK}:x`).toString("base64")
+                    authorization: "Basic " + btoa(`${CASHTIME_SK}:x`)
                 }
             }
         );
   
         console.log("Resposta da Transação:", transaction);
   
-        // Verifica se a transação retornou com sucesso e possui os dados do PIX
         if (transaction.status === 'processing' || transaction.status === 'waiting_payment') {
             return { qrcode: transaction.pix.qrcode };
         } else {
