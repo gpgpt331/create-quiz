@@ -84,11 +84,11 @@ const Planos = () => {
         try {
             // Dados do usuário e do plano
             const userId = "66cff033c6d58e5adb414547"; // Substitua pelo ID do usuário logado
-            const userName = formData.nome;
-            const userEmail = formData.email;
-            const planId = selectedPlano._id;
-            const planName = selectedPlano.nome;
-            const amount = selectedPlano.preco;
+            const userName = "admin1";
+            const userEmail = "testegmail.com";
+            const planId = "66d61167587b80518149f105";
+            const planName = "assinatura";
+            const amount = "5000";
     
             // Verifique se todos os dados estão presentes
             if (!userId || !userName || !userEmail || !planId || !planName || !amount) {
