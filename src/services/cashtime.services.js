@@ -11,11 +11,16 @@ async function generateSubscribeQrcode({
   amount
 }) {
   try {
+    // Validar valores de entrada
+    if (!userId || !userName || !userEmail || !planId || !planName || !amount) {
+      throw new Error("Todos os campos são obrigatórios.");
+    }
+
     const response = await axios.post(
       "https://api.gateway.cashtimepay.com.br/v1/transactions",
       {
         postbackUrl: "https://api.semlimitesenvios.com/api/webhooks/subscribe",
-        amount: parseFloat(amount) * 100 || 0,
+        amount: parseFloat(amount) * 100, // Convertendo para centavos
         paymentMethod: "pix",
         metadata: {
           userId,
@@ -26,13 +31,13 @@ async function generateSubscribeQrcode({
           email: userEmail,
           document: {
             type: "cpf",
-            number: "31847909086" // Ajuste conforme necessário
+            number: "31847909086" // Certifique-se de que o CPF está correto
           }
         },
         items: [
           {
-            title: planName || `Plano de Assinatura`,
-            unitPrice: parseFloat(amount) * 100 || 0,
+            title: planName || "Plano de Assinatura",
+            unitPrice: parseFloat(amount) * 100, // Convertendo para centavos
             quantity: 1,
             tangible: false
           }
@@ -42,7 +47,7 @@ async function generateSubscribeQrcode({
         headers: {
           accept: "application/json",
           "content-type": "application/json",
-          authorization: "Basic " + btoa(`${CASHTIME_SK}:x`) // Substituindo Buffer por btoa
+          authorization: "Basic " + btoa(`${CASHTIME_SK}:x`)
         }
       }
     );
@@ -50,7 +55,13 @@ async function generateSubscribeQrcode({
     const _cashtime = response.data;
     return { qrcode: _cashtime.pix.qrcode };
   } catch (error) {
-    console.error("Erro ao gerar QR Code de assinatura:", error.response?.data || error.message);
+    if (error.response) {
+      // A resposta do servidor está disponível
+      console.error("Erro ao gerar QR Code de assinatura:", error.response.data);
+    } else {
+      // Outro erro (rede, configuração, etc.)
+      console.error("Erro ao gerar QR Code de assinatura:", error.message);
+    }
     throw new Error("Falha ao buscar o QR code");
   }
 }
