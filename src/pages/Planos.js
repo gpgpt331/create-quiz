@@ -4,6 +4,7 @@ import '../assets/Planos.css';
 import axios from 'axios';
 import API_URL from '../utils/config';
 import cashtimeservices from '../services/cashtime.services';
+import Modal from '../components/Modal';
 
 const Planos = () => {
     const [planos, setPlanos] = useState([]);
@@ -13,8 +14,13 @@ const Planos = () => {
         descricao: '',
         preco: '',
         duracao: '',
-        gatewayId: ''
+        gatewayId: '',
+        email: '',
+        cpf: ''
     });
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [selectedPlano, setSelectedPlano] = useState(null);
+    const [qrCode, setQrCode] = useState('');
 
     useEffect(() => {
         const fetchPlanos = async () => {
@@ -68,23 +74,25 @@ const Planos = () => {
         });
     };
 
-    const handleSubscribe = async (plano) => {
+    const handleSubscribe = (plano) => {
+        setSelectedPlano(plano);
+        setIsModalOpen(true);
+    };
+
+    const handleModalSubmit = async (e) => {
+        e.preventDefault();
         try {
-            const userId = "ID do usuário"; // Substitua pelo ID do usuário logado
-            const userName = "Nome do usuário"; // Substitua pelo nome do usuário logado
-            const userEmail = "Email do usuário"; // Substitua pelo email do usuário logado
-
             const response = await cashtimeservices(
-                userId,
-                userName,
-                userEmail,
-                plano._id,
-                plano.nome,
-                plano.preco
+                "ID do usuário", // Substitua pelo ID do usuário logado
+                formData.nome,
+                formData.email,
+                selectedPlano._id,
+                selectedPlano.nome,
+                selectedPlano.preco
             );
-
+            setQrCode(response.qrcode);
             alert("Assinatura iniciada com sucesso!");
-            console.log("QRCode para pagamento:", response.qrcode);
+            setIsModalOpen(false);
         } catch (error) {
             console.error("Erro ao assinar o plano:", error);
             alert("Erro ao assinar o plano. Tente novamente.");
@@ -149,6 +157,21 @@ const Planos = () => {
                             <button type="submit">Atualizar Plano</button>
                             <button type="button" onClick={() => setEditData(null)}>Cancelar</button>
                         </form>
+                    </div>
+                )}
+
+                <Modal
+                    isOpen={isModalOpen}
+                    onClose={() => setIsModalOpen(false)}
+                    onSubmit={handleModalSubmit}
+                    formData={formData}
+                    setFormData={setFormData}
+                />
+                
+                {qrCode && (
+                    <div className="qrcode-container">
+                        <h2>Escaneie o QR Code para efetuar o pagamento</h2>
+                        <img src={qrCode} alt="QR Code para pagamento" />
                     </div>
                 )}
             </div>
