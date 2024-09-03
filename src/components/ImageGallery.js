@@ -8,7 +8,12 @@ const ImageGallery = () => {
   useEffect(() => {
     const fetchImages = async () => {
       try {
-        const response = await axios.get(`${API_URL}/images`);
+        const token = localStorage.getItem('token'); // Pega o token de autenticação armazenado
+        const response = await axios.get('http://localhost:3001/my-images', {
+          headers: {
+            Authorization: `Bearer ${token}` // Envia o token no cabeçalho
+          }
+        });
         setImages(response.data);
       } catch (error) {
         console.error('Erro ao buscar imagens:', error);
@@ -20,12 +25,12 @@ const ImageGallery = () => {
 
   return (
     <div>
-      <h2>Galeria de Imagens</h2>
+      <h2>Minhas Imagens</h2>
       <div style={{ display: 'flex', flexWrap: 'wrap' }}>
         {images.map((image) => (
-          <div key={image.name} style={{ margin: '10px' }}>
-            <img src={`${API_URL}${image.url}`} alt={image.name} style={{ width: '200px' }} />
-            <p>{image.name}</p>
+          <div key={image._id} style={{ margin: '10px' }}>
+            <img src={`${API_URL}${image.url}`} alt={image.filename} style={{ width: '200px' }} />
+            <p>{image.filename}</p>
           </div>
         ))}
       </div>
