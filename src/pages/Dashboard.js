@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Sidebar from '../components/Sidebar'; 
-
+import ImageGallery from '../components/ImageGallery';
+import ImageUpload from '../components/ImageUpload';
 
 
 const Dashboard = () => {
@@ -18,11 +19,16 @@ const Dashboard = () => {
     }, [navigate]);
 
     return (
+        
         <div className="dashboard-container">
             <Sidebar />
+            
             <div className="dashboard-content">
                 <h1>Bem-vindo ao Dashboard</h1>
             </div>
+            <ImageUpload/>
+
+            <ImageGallery />
         </div>
     );
 };

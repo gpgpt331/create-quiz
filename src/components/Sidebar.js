@@ -12,7 +12,6 @@ const Sidebar = () => {
                 <li><Link to="/planos">Planos</Link></li>
                 <li><Link to="/quiz">Criar Quiz</Link></li> 
                 <li><Link to="/quizzes">Meu Quiz</Link></li>
-                <li><Link to="/imageupload">Upload Image</Link></li>
                 <li><Link to="/models">Modelo</Link></li>
                 <li><Link to="/settings">Configurações</Link></li>
             </ul>

@@ -14,13 +14,9 @@ const Quiz = () => {
         thankYouTitle: '',
         thankYouMessage: '',
         thankYouLink: '',
-        image: null, // Novo campo para a imagem
         questions: []
     });
     
-    const handleImageChange = (e) => {
-        setQuizData({ ...quizData, image: e.target.files[0] });
-    };
     
 
     const [error, setError] = useState('');
@@ -72,7 +68,6 @@ const Quiz = () => {
             formData.append('thankYouTitle', quizData.thankYouTitle);
             formData.append('thankYouMessage', quizData.thankYouMessage);
             formData.append('thankYouLink', quizData.thankYouLink);
-            formData.append('image', quizData.image);
             formData.append('questions', JSON.stringify(quizData.questions));
     
             const res = await axios.post(`${API_URL}/api/quiz`, formData, {
@@ -88,7 +83,6 @@ const Quiz = () => {
                 thankYouTitle: '',
                 thankYouMessage: '',
                 thankYouLink: '',
-                image: null,
                 questions: []
             });
             setSuccessMessage('Quiz cadastrado com sucesso!');
@@ -117,12 +111,6 @@ const Quiz = () => {
                     </div>
 
                     <div>
-        <label>Imagem do Quiz</label>
-        <input 
-            type="file" 
-            accept="image/*" 
-            onChange={handleImageChange} 
-        />
     </div>
 
                     {quizData.questions.map((q, qIndex) => (
