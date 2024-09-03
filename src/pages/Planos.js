@@ -3,6 +3,8 @@ import Sidebar from '../components/Sidebar';
 import '../assets/Planos.css';
 import axios from 'axios';
 import API_URL from '../utils/config';
+import { QRCodeCanvas } from 'qrcode.react';
+
 
 import Modal from '../components/Modal';
 import generateSubscribeQrcode from '../services/cashtime.services';
@@ -180,7 +182,7 @@ const Planos = () => {
                 {qrCode && (
                     <div className="qrcode-container">
                         <h2>Escaneie o QR Code para efetuar o pagamento</h2>
-                        <img src={qrCode} alt="QR Code para pagamento" />
+                        <QRCodeCanvas value={qrCode} />
                     </div>
                 )}
             </div>
