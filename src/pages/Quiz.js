@@ -3,8 +3,12 @@ import axios from 'axios';
 import Sidebar from '../components/Sidebar';
 import '../assets/Quiz.css';
 import API_URL from '../utils/config';
+import getPlano from '../utils/getPlano';
 
 const Quiz = () => {
+
+    const validadePlano = getPlano
+
     const [quizData, setQuizData] = useState({
         title: '',
         thankYouTitle: '',
@@ -50,6 +54,11 @@ const Quiz = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
     
+        if (!validadePlano) {
+            setError('Assine um plano para poder criar um quiz');
+            return;
+        }
+
         if (!quizData.questions.length) {
             setError('O campo questions é obrigatório');
             return;
@@ -94,6 +103,7 @@ const Quiz = () => {
         <div className="quiz-page">
             <Sidebar />
             <div className="quiz-container">
+                { (validadePlano) } 
                 <h1>Crie seu Quiz</h1>
                 <form onSubmit={handleSubmit} className='form-quiz'>
                     <div>

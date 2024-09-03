@@ -27,7 +27,8 @@ const Login = () => {
             // Verifica se o token e o userId foram retornados e os armazena no localStorage
             if (res && res.data && res.data.token && res.data.userId) {
                 localStorage.setItem('token', res.data.token); // Armazena o token JWT no localStorage
-                localStorage.setItem('userId', res.data.userId); // Armazena o userId no localStorage
+                localStorage.setItem('userId', res.data.userId);// Armazena o userId no localStorage
+                localStorage.setItem('plano', res.data.plano);
                 navigate('/dashboard'); // Redireciona para a página do dashboard
             } else {
                 console.error('Estrutura de resposta inesperada:', res);
