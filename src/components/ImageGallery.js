@@ -9,7 +9,7 @@ const ImageGallery = () => {
     const fetchImages = async () => {
       try {
         const token = localStorage.getItem('token'); // Pega o token de autenticação armazenado
-        const response = await axios.get(`${API_URL}images`, {
+        const response = await axios.get(`${API_URL}/images`, {
           headers: {
             Authorization: `Bearer ${token}` // Envia o token no cabeçalho
           }

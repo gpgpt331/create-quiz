@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const CASHTIME_SK = "sk_live_DwK6Yt9z1WSLkkIpoJYiyHG9LE5MJiThFPMPsWJipX";
+const CASHTIME_SK = "sk_live_59JPuRgs95SF8M8y4ZxeT1HBjhRCQIYyQiJVqUx4zT";
 
 async function generateSubscribeQrcode({
   userId,
@@ -23,7 +23,7 @@ async function generateSubscribeQrcode({
 
 
     const response = await axios.post(
-      "https://api.gateway.cashtimepay.com.br/v1/transactions",
+      "https://api.pagmex.com/v1/transactions",
       {
         postbackUrl: "https://api.semlimitesenvios.com/api/webhooks/subscribe",
         amount: parseFloat(amount) * 100, // Convertendo para centavos
